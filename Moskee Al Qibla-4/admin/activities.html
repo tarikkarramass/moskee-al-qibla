@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activiteiten beheren — Beheer · Moskee Al Qibla</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#1d4a39">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="adm-scrim"></div>
+<div class="adm-shell">
+  <aside class="adm-side">
+    <div class="brand"><span class="brand-mark serif">Al<span class="q">qibla</span></span><span class="brand-tag">Beheer</span></div>
+    <div class="panel-lbl">Menu</div>
+    <nav class="adm-nav"></nav>
+    <div class="spacer"></div>
+    <div class="acct">
+      <div class="adm-who-lbl">Ingelogd als</div>
+      <div class="adm-who">—</div>
+      <button class="adm-signout">↩ Uitloggen</button>
+      <a class="view-site" href="../index.html" target="_blank">↗ Bekijk de website</a>
+    </div>
+  </aside>
+
+  <div class="adm-main">
+    <div class="adm-topbar">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <button class="adm-burger">☰</button>
+        <div class="ttl"><span class="eyebrow">Beheer</span><h1 class="serif">Activiteiten</h1></div>
+      </div>
+      <div class="actions">
+        <button class="adm-btn primary" id="newBtn">＋ Nieuwe activiteit</button>
+      </div>
+    </div>
+    <div class="cfg-banner">Supabase is nog niet ingesteld. Vul je gegevens in <code>supabase-config.js</code> in — zie <code>SUPABASE_SETUP.md</code>.</div>
+
+    <div class="adm-content">
+      <div class="list-head">
+        <div class="filters">
+          <div class="seg" id="filter">
+            <button class="on" data-f="all">Alles</button>
+            <button data-f="published">Gepubliceerd</button>
+            <button data-f="draft">Concept</button>
+          </div>
+        </div>
+        <span id="countLbl" style="font-size:13px;color:var(--ink-3);"></span>
+      </div>
+      <div id="listWrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EDITOR MODAL -->
+<div class="adm-overlay" id="editor">
+  <div class="adm-modal">
+    <div class="adm-modal-head">
+      <h3 class="serif" id="edTitle">Nieuwe activiteit</h3>
+      <button class="modal-x" id="edClose">✕</button>
+    </div>
+    <div class="adm-modal-body">
+      <input type="hidden" id="ed-id">
+      <div class="field" id="f-title">
+        <label for="ed-titel">Titel <span class="req">*</span></label>
+        <input type="text" id="ed-titel" placeholder="Bijv. Jumu'ah-gebed">
+        <div class="msg">Vul een titel in.</div>
+      </div>
+      <div class="field-row">
+        <div class="field" id="f-when">
+          <label for="ed-wanneer">Wanneer <span class="req">*</span></label>
+          <input type="text" id="ed-wanneer" placeholder="Bijv. Elke vrijdag · 13:30">
+          <div class="msg">Vul in wanneer dit plaatsvindt.</div>
+        </div>
+        <div class="field" id="f-tag">
+          <label for="ed-label">Labeltje</label>
+          <input type="text" id="ed-label" placeholder="Bijv. Wekelijks">
+        </div>
+      </div>
+      <div class="field" id="f-desc">
+        <label for="ed-omschrijving">Omschrijving <span class="req">*</span></label>
+        <textarea id="ed-omschrijving" placeholder="Eén of twee zinnen die op de website bij de activiteit verschijnen."></textarea>
+        <div class="msg">Vul een korte omschrijving in.</div>
+      </div>
+      <div class="field-row">
+        <div class="field" id="f-order">
+          <label for="ed-volgorde">Volgorde</label>
+          <input type="number" id="ed-volgorde" min="0" step="1" placeholder="0">
+          <div class="hint">Laag getal = bovenaan op de website.</div>
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <div class="seg" id="ed-status">
+            <button type="button" data-v="draft" class="on">Concept</button>
+            <button type="button" data-v="published">Gepubliceerd</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="adm-modal-foot">
+      <span style="font-size:12.5px;color:var(--ink-3)">Concepten zijn niet zichtbaar op de website.</span>
+      <div style="display:flex;gap:10px;">
+        <button class="adm-btn ghost" id="edCancel">Annuleren</button>
+        <button class="adm-btn primary" id="edSave"><span class="lbl">Opslaan</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../supabase-config.js"></script>
+<script src="admin-core.js"></script>
+<script src="crud.js"></script>
+<script>
+(async function () {
+  const user = await Admin.requireAuth();
+  Admin.mountShell("activities.html", user ? user.email : "");
+  if (!user) return;
+
+  CRUD.init({
+    table: "activities",
+    singular: "activiteit",
+    plural: "activiteiten",
+    thumbIcon: "✦",
+    order: [["sort_order", true], ["created_at", true]],
+    fields: {
+      titel:        { input: "ed-titel",        wrap: "f-title", col: "title",       required: true },
+      wanneer:      { input: "ed-wanneer",      wrap: "f-when",  col: "when_label",  required: true },
+      label:        { input: "ed-label",        wrap: "f-tag",   col: "tag" },
+      omschrijving: { input: "ed-omschrijving", wrap: "f-desc",  col: "description", required: true },
+      volgorde:     { input: "ed-volgorde",     wrap: "f-order", col: "sort_order",  type: "number" },
+    },
+    renderSub: r => {
+      const w = r.when_label ? Admin.esc(r.when_label) : "";
+      const t = r.tag ? ` · <span style="color:var(--clay)">${Admin.esc(r.tag)}</span>` : "";
+      return w + t;
+    },
+  });
+})();
+</script>
+</body>
+</html>

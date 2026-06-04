@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video's beheren — Beheer · Moskee Al Qibla</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#1d4a39">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="adm-scrim"></div>
+<div class="adm-shell">
+  <aside class="adm-side">
+    <div class="brand"><span class="brand-mark serif">Al<span class="q">qibla</span></span><span class="brand-tag">Beheer</span></div>
+    <div class="panel-lbl">Menu</div>
+    <nav class="adm-nav"></nav>
+    <div class="spacer"></div>
+    <div class="acct">
+      <div class="adm-who-lbl">Ingelogd als</div>
+      <div class="adm-who">—</div>
+      <button class="adm-signout">↩ Uitloggen</button>
+      <a class="view-site" href="../index.html" target="_blank">↗ Bekijk de website</a>
+    </div>
+  </aside>
+
+  <div class="adm-main">
+    <div class="adm-topbar">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <button class="adm-burger">☰</button>
+        <div class="ttl"><span class="eyebrow">Beheer</span><h1 class="serif">Video's</h1></div>
+      </div>
+      <div class="actions">
+        <button class="adm-btn primary" id="newBtn">＋ Nieuwe video</button>
+      </div>
+    </div>
+    <div class="cfg-banner">Supabase is nog niet ingesteld. Vul je gegevens in <code>supabase-config.js</code> in — zie <code>SUPABASE_SETUP.md</code>.</div>
+
+    <div class="adm-content">
+      <div class="list-head">
+        <div class="filters">
+          <div class="seg" id="filter">
+            <button class="on" data-f="all">Alles</button>
+            <button data-f="published">Gepubliceerd</button>
+            <button data-f="draft">Concept</button>
+          </div>
+        </div>
+        <span id="countLbl" style="font-size:13px;color:var(--ink-3);"></span>
+      </div>
+      <div id="listWrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EDITOR MODAL -->
+<div class="adm-overlay" id="editor">
+  <div class="adm-modal">
+    <div class="adm-modal-head">
+      <h3 class="serif" id="edTitle">Nieuwe video</h3>
+      <button class="modal-x" id="edClose">✕</button>
+    </div>
+    <div class="adm-modal-body">
+      <input type="hidden" id="ed-id">
+      <div class="field" id="f-title">
+        <label for="ed-titel">Titel <span class="req">*</span></label>
+        <input type="text" id="ed-titel" placeholder="Titel van de video">
+        <div class="msg">Vul een titel in.</div>
+      </div>
+      <div class="field" id="f-url">
+        <label for="ed-url">YouTube- of Vimeo-link <span class="req">*</span></label>
+        <input type="url" id="ed-url" placeholder="https://www.youtube.com/watch?v=…">
+        <div class="hint">Plak de volledige link. De thumbnail van YouTube wordt automatisch gebruikt als je er geen uploadt.</div>
+        <div class="msg">Vul een geldige YouTube- of Vimeo-link in.</div>
+      </div>
+      <div class="field" id="f-desc">
+        <label for="ed-beschrijving">Beschrijving</label>
+        <textarea id="ed-beschrijving" style="min-height:90px" placeholder="Korte beschrijving van de video…"></textarea>
+        <div class="msg">—</div>
+      </div>
+      <div class="field">
+        <label>Thumbnail (optioneel)</label>
+        <div class="uploader">
+          <div class="preview" id="ed-preview">▷</div>
+          <div class="up-side">
+            <div class="drop" id="ed-drop">
+              <div class="t">Klik of sleep een thumbnail hierheen</div>
+              <div class="s">JPG, PNG of WebP · max. 5 MB</div>
+            </div>
+            <input type="file" id="ed-file" accept="image/*" hidden>
+            <button class="adm-btn ghost sm" id="ed-clearimg" style="margin-top:10px;display:none;">Thumbnail verwijderen</button>
+          </div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field" id="f-date">
+          <label for="ed-datum">Publicatiedatum <span class="req">*</span></label>
+          <input type="date" id="ed-datum">
+          <div class="msg">Kies een datum.</div>
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <div class="seg" id="ed-status">
+            <button type="button" data-v="draft" class="on">Concept</button>
+            <button type="button" data-v="published">Gepubliceerd</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="adm-modal-foot">
+      <span style="font-size:12.5px;color:var(--ink-3)">Concepten zijn niet zichtbaar op de website.</span>
+      <div style="display:flex;gap:10px;">
+        <button class="adm-btn ghost" id="edCancel">Annuleren</button>
+        <button class="adm-btn primary" id="edSave"><span class="lbl">Opslaan</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../supabase-config.js"></script>
+<script src="admin-core.js"></script>
+<script src="crud.js"></script>
+<script>
+(async function () {
+  const user = await Admin.requireAuth();
+  Admin.mountShell("videos.html", user ? user.email : "");
+  if (!user) return;
+
+  CRUD.init({
+    table: "videos",
+    folder: "videos",
+    singular: "video",
+    plural: "video's",
+    imageField: "thumbnail_path",
+    thumbIcon: "▷",
+    fields: {
+      titel: { input: "ed-titel", wrap: "f-title", col: "title", required: true },
+      url: { input: "ed-url", wrap: "f-url", col: "video_url", required: true,
+             pattern: /(youtube\.com|youtu\.be|vimeo\.com)/i },
+      beschrijving: { input: "ed-beschrijving", wrap: "f-desc", col: "description", required: false },
+      datum: { input: "ed-datum", wrap: "f-date", col: "published_at", required: true },
+    },
+    renderSub: r => Admin.esc(r.description || r.video_url || ""),
+  });
+})();
+</script>
+</body>
+</html>

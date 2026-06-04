@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inloggen — Beheer · Moskee Al Qibla</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#1d4a39">
+<link rel="stylesheet" href="admin.css">
+<style>
+.link-row{display:flex;justify-content:flex-end;margin:-8px 0 18px;}
+.text-link{font-size:13px;font-weight:600;color:var(--green);border-bottom:1px solid var(--line-2);padding-bottom:1px;transition:.15s;}
+.text-link:hover{color:var(--clay);border-color:var(--clay);}
+.back-link{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink-2);margin-top:22px;transition:.15s;}
+.back-link:hover{color:var(--ink);}
+.notice{display:none;padding:16px 18px;border-radius:4px;background:rgba(45,104,80,.1);border:1px solid rgba(45,104,80,.25);margin-bottom:18px;}
+.notice.show{display:block;}
+.notice .t{font-size:14px;font-weight:600;color:var(--green-2);margin-bottom:4px;}
+.notice .d{font-size:13.5px;color:var(--ink-2);line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="cfg-banner">Supabase is nog niet ingesteld. Vul je gegevens in <code>supabase-config.js</code> in — zie <code>SUPABASE_SETUP.md</code>.</div>
+
+<div class="login-wrap">
+  <aside class="login-art">
+    <div class="brand-mark serif">Al<span class="q">qibla</span></div>
+    <div>
+      <h1 class="serif">Beheer&shy;omgeving voor de <em>gemeenschap</em></h1>
+      <p>Beheer nieuws, video's en media van Moskee Al Qibla. Veilig ingelogd via je beheerdersaccount.</p>
+    </div>
+    <div class="foot">Marokkaanse Islamitische Culturele Vereniging Al Qibla · Zoetermeer</div>
+  </aside>
+
+  <main class="login-form-side">
+    <!-- LOGIN VIEW -->
+    <div class="login-card" id="loginView">
+      <span class="eyebrow">Beheer</span>
+      <h2 class="serif">Inloggen</h2>
+      <p class="lead">Log in met je beheerdersaccount om verder te gaan.</p>
+
+      <form id="loginForm" novalidate>
+        <div class="field" id="f-email">
+          <label for="email">E-mailadres <span class="req">*</span></label>
+          <input type="email" id="email" autocomplete="username" placeholder="it@moskeealqibla.nl" value="it@moskeealqibla.nl">
+          <div class="msg">Vul een geldig e-mailadres in.</div>
+        </div>
+        <div class="field" id="f-pass" style="margin-bottom:10px;">
+          <label for="pass">Wachtwoord <span class="req">*</span></label>
+          <input type="password" id="pass" autocomplete="current-password" placeholder="••••••••">
+          <div class="msg">Vul je wachtwoord in.</div>
+        </div>
+        <div class="link-row">
+          <a href="#" class="text-link" id="forgotLink">Wachtwoord vergeten?</a>
+        </div>
+        <div id="authErr" class="state error" style="display:none;padding:14px 16px;text-align:left;margin-bottom:18px;">
+          <span id="authErrMsg" style="font-size:14px;color:var(--clay);font-weight:500;"></span>
+        </div>
+        <button type="submit" class="adm-btn primary" id="submitBtn" style="width:100%">
+          <span class="lbl">Inloggen</span> <span class="arr">→</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- RESET VIEW -->
+    <div class="login-card" id="resetView" style="display:none;">
+      <span class="eyebrow">Beheer</span>
+      <h2 class="serif">Wachtwoord vergeten</h2>
+      <p class="lead">We sturen een herstellink naar het beheerdersadres. Open die link om een nieuw wachtwoord in te stellen.</p>
+
+      <div class="notice" id="resetDone">
+        <div class="t">✓ Herstellink verstuurd</div>
+        <div class="d">Controleer de inbox van <strong id="sentTo">it@moskeealqibla.nl</strong> (ook de spam-map). De link is beperkt geldig.</div>
+      </div>
+
+      <form id="resetForm" novalidate>
+        <div class="field" id="f-remail">
+          <label for="remail">E-mailadres beheerder <span class="req">*</span></label>
+          <input type="email" id="remail" autocomplete="username" value="it@moskeealqibla.nl">
+          <div class="msg">Vul een geldig e-mailadres in.</div>
+        </div>
+        <div id="resetErr" class="state error" style="display:none;padding:14px 16px;text-align:left;margin-bottom:18px;">
+          <span id="resetErrMsg" style="font-size:14px;color:var(--clay);font-weight:500;"></span>
+        </div>
+        <button type="submit" class="adm-btn primary" id="resetBtn" style="width:100%">
+          <span class="lbl">Stuur herstellink</span> <span class="arr">→</span>
+        </button>
+      </form>
+      <a href="#" class="back-link" id="backLink">← Terug naar inloggen</a>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../supabase-config.js"></script>
+<script src="admin-core.js"></script>
+<script>
+(async function () {
+  const A = window.AlQibla;
+  if (!A.configured) { document.documentElement.dataset.unconfigured = "1"; }
+
+  // al ingelogd? door naar dashboard
+  if (A.configured) {
+    const { data } = await A.sb.auth.getSession();
+    if (data.session && data.session.user.email === A.ADMIN_EMAIL) {
+      location.replace("dashboard.html");
+      return;
+    }
+  }
+
+  const $ = id => document.getElementById(id);
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function setErr(id, bad) { $(id).classList.toggle("err", bad); }
+  function busy(btn, on, label) {
+    btn.disabled = on;
+    btn.querySelector(".lbl").innerHTML = on ? '<span class="spin"></span> Bezig…' : label;
+    btn.querySelector(".arr").style.display = on ? "none" : "";
+  }
+
+  /* ---------- view wisselen ---------- */
+  $("forgotLink").addEventListener("click", e => {
+    e.preventDefault();
+    $("loginView").style.display = "none";
+    $("resetView").style.display = "";
+    $("remail").value = $("email").value.trim() || A.ADMIN_EMAIL;
+  });
+  $("backLink").addEventListener("click", e => {
+    e.preventDefault();
+    $("resetView").style.display = "none";
+    $("loginView").style.display = "";
+  });
+
+  /* ---------- inloggen ---------- */
+  const loginErr = { box: $("authErr"), msg: $("authErrMsg") };
+  function showLoginErr(m) { loginErr.msg.textContent = m; loginErr.box.style.display = "block"; }
+
+  $("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    loginErr.box.style.display = "none";
+    const email = $("email").value.trim();
+    const pass = $("pass").value;
+    const okEmail = emailRe.test(email);
+    setErr("f-email", !okEmail);
+    setErr("f-pass", !pass);
+    if (!okEmail || !pass) return;
+    if (!A.configured) { showLoginErr("Supabase is nog niet ingesteld. Vul je gegevens in supabase-config.js in."); return; }
+
+    const btn = $("submitBtn");
+    busy(btn, true);
+    const { data, error } = await A.sb.auth.signInWithPassword({ email, password: pass });
+    if (error) {
+      showLoginErr(error.message === "Invalid login credentials" ? "Onjuist e-mailadres of wachtwoord." : "Inloggen mislukt: " + error.message);
+      busy(btn, false, "Inloggen"); return;
+    }
+    if (data.user.email !== A.ADMIN_EMAIL) {
+      await A.sb.auth.signOut();
+      showLoginErr("Dit account heeft geen beheerdersrechten.");
+      busy(btn, false, "Inloggen"); return;
+    }
+    location.replace("dashboard.html");
+  });
+
+  /* ---------- wachtwoord vergeten ---------- */
+  const resetErr = { box: $("resetErr"), msg: $("resetErrMsg") };
+  function showResetErr(m) { resetErr.msg.textContent = m; resetErr.box.style.display = "block"; }
+
+  $("resetForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    resetErr.box.style.display = "none";
+    const email = $("remail").value.trim();
+    const okEmail = emailRe.test(email);
+    setErr("f-remail", !okEmail);
+    if (!okEmail) return;
+    if (!A.configured) { showResetErr("Supabase is nog niet ingesteld. Vul je gegevens in supabase-config.js in."); return; }
+
+    // herstel is alleen bedoeld voor het beheerdersadres
+    if (email.toLowerCase() !== A.ADMIN_EMAIL.toLowerCase()) {
+      showResetErr("Herstel is alleen mogelijk voor het beheerdersadres " + A.ADMIN_EMAIL + ".");
+      return;
+    }
+
+    const btn = $("resetBtn");
+    busy(btn, true);
+    // landingspagina voor de herstellink — werkt waar de site ook gehost is
+    const redirectTo = new URL("reset.html", window.location.href).href;
+    const { error } = await A.sb.auth.resetPasswordForEmail(email, { redirectTo });
+    busy(btn, false, "Stuur herstellink");
+    if (error) { showResetErr("Versturen mislukt: " + error.message); return; }
+
+    $("sentTo").textContent = email;
+    $("resetDone").classList.add("show");
+    $("resetForm").style.display = "none";
+  });
+})();
+</script>
+</body>
+</html>
