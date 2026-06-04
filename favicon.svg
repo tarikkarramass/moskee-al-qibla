@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Moskee Al Qibla">
+  
+  <rect width="64" height="64" rx="14" fill="#1d4a39"></rect>
+  
+  <path d="M14 54 L14 29 C14 18 22 9 32 9 C42 9 50 18 50 29 L50 54 Z" fill="#f1e9d8"></path>
+  
+  <path d="M23 54 L23 30 C23 22 27 16 32 16 C37 16 41 22 41 30 L41 54 Z" fill="#1d4a39"></path>
+  
+  <circle cx="32" cy="30" r="3.4" fill="#9c7c33"></circle>
+</svg>

@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moskee Al Qibla — Zoetermeer</title>
+<meta name="description" content="Moskee Al Qibla in Zoetermeer — Marokkaanse Islamitische Culturele Vereniging. Gebedstijden, islamitisch onderwijs en gemeenschap voor iedereen.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1d4a39">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MOSKEE AL QIBLA — "Riad"
+   Warme limewash-plaster · zellige tuingroen · terracotta · brass.
+   Type: Instrument Serif (display) · Hanken Grotesk (UI) · Amiri (Arabisch)
+   ============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+
+:root{
+  --paper:#ece5d6;        /* limewash wand */
+  --paper-2:#f4efe3;      /* lichter oppervlak */
+  --sunken:#e2d8c3;       /* verdiept */
+  --ink:#211d15;          /* warm bijna-zwart */
+  --ink-2:#6c6451;        /* gedempt */
+  --ink-3:#938a73;        /* zachter */
+  --line:#d3c9b3;         /* haarlijn */
+  --line-2:#c3b89e;
+  --green:#1d4a39;        /* zellige tuingroen — primair */
+  --green-deep:#163729;
+  --green-2:#2d6850;
+  --clay:#b04e2b;         /* terracotta — secundair */
+  --clay-2:#c8693f;
+  --brass:#9c7c33;        /* oker / brass detail */
+  --cream:#f1e9d8;        /* tekst op groen */
+  --cream-2:rgba(241,233,216,.62);
+  --cream-3:rgba(241,233,216,.34);
+  --maxw:1280px;
+}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Hanken Grotesk',system-ui,sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+/* ---------- type primitives ---------- */
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;}
+.eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--clay);display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--clay);display:inline-block;}
+.eyebrow.on-green{color:var(--brass);}
+.eyebrow.on-green::before{background:var(--brass);}
+.eyebrow.center{justify-content:center;}
+
+h1,h2,h3{font-family:'Instrument Serif',Georgia,serif;font-weight:400;line-height:1.0;letter-spacing:-.01em;}
+em{font-style:italic;}
+
+.section{padding:clamp(72px,9vw,150px) clamp(22px,6vw,90px);}
+.wrap{max-width:var(--maxw);margin:0 auto;}
+
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-size:14px;font-weight:600;letter-spacing:.01em;
+  padding:15px 26px;border-radius:2px;transition:.25s cubic-bezier(.2,.7,.2,1);
+  white-space:nowrap;
+}
+.btn .arr{transition:transform .25s;}
+.btn:hover .arr{transform:translateX(4px);}
+.btn-clay{background:var(--clay);color:var(--cream);}
+.btn-clay:hover{background:var(--clay-2);}
+.btn-ink{background:var(--ink);color:var(--paper);}
+.btn-ink:hover{background:#332d20;}
+.btn-line{border:1px solid var(--ink);color:var(--ink);}
+.btn-line:hover{background:var(--ink);color:var(--paper);}
+.btn-cream{background:var(--cream);color:var(--green);}
+.btn-cream:hover{background:#fff;}
+.btn-line-cream{border:1px solid var(--cream-3);color:var(--cream);}
+.btn-line-cream:hover{border-color:var(--cream);background:rgba(241,233,216,.08);}
+
+/* ---------- zellige tile bg ---------- */
+.zellige{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='none' stroke='%23f1e9d8' stroke-opacity='0.05' stroke-width='1'%3E%3Crect x='30' y='30' width='60' height='60'/%3E%3Crect x='30' y='30' width='60' height='60' transform='rotate(45 60 60)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:120px 120px;
+}
+
+/* ============================================================ NAV */
+nav{
+  position:sticky;top:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  height:70px;padding:0 clamp(22px,6vw,90px);
+  background:rgba(236,229,214,.86);
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:baseline;gap:11px;}
+.brand-mark{font-family:'Instrument Serif',serif;font-size:27px;line-height:1;color:var(--ink);}
+.brand-mark .q{color:var(--green);}
+.brand-tag{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{
+  font-size:13.5px;font-weight:500;color:var(--ink-2);padding:9px 14px;border-radius:2px;
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:var(--ink);background:rgba(33,29,21,.05);}
+.nav-cta{background:var(--green)!important;color:var(--cream)!important;font-weight:600!important;padding:11px 20px!important;margin-left:6px;}
+.nav-cta:hover{background:var(--green-deep)!important;}
+.nav-toggle{display:none;font-size:24px;color:var(--ink);padding:6px;}
+
+/* ============================================================ HERO */
+.hero{
+  background:var(--green);color:var(--cream);position:relative;overflow:hidden;
+  padding:clamp(56px,7vw,104px) clamp(22px,6vw,90px) clamp(40px,5vw,72px);
+}
+.hero-grid{
+  max-width:var(--maxw);margin:0 auto;position:relative;z-index:2;
+  display:grid;grid-template-columns:1.35fr .95fr;gap:clamp(36px,5vw,72px);align-items:end;
+}
+.hero-bismillah{
+  font-family:'Amiri',serif;direction:rtl;
+  font-size:clamp(26px,3.4vw,40px);line-height:1.7;color:var(--brass);
+  margin-bottom:18px;
+}
+.hero-bismillah-latin{
+  display:block;font-style:italic;font-family:'Instrument Serif',serif;
+  font-size:15px;color:var(--cream-2);margin-bottom:clamp(28px,3.5vw,44px);letter-spacing:.01em;
+}
+.hero h1{
+  font-size:clamp(46px,7.2vw,110px);line-height:1.05;color:var(--cream);
+  letter-spacing:-.02em;margin-bottom:30px;max-width:15ch;text-wrap:balance;padding-bottom:.04em;
+}
+.hero h1 em{color:var(--brass);}
+.hero-sub{
+  font-size:clamp(16px,1.5vw,18.5px);color:var(--cream-2);max-width:44ch;
+  line-height:1.7;font-weight:300;margin-bottom:34px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* hero live card */
+.today{
+  background:var(--green-deep);border:1px solid rgba(241,233,216,.12);
+  border-radius:4px;padding:clamp(24px,2.4vw,32px);position:relative;overflow:hidden;
+}
+.today-loc{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:6px;}
+.today-clock{font-family:'Instrument Serif',serif;font-size:clamp(56px,6vw,76px);line-height:.9;color:var(--cream);letter-spacing:-.01em;}
+.today-clock .sec{font-size:.4em;color:var(--cream-3);vertical-align:super;letter-spacing:0;}
+.today-date{font-size:14px;color:var(--cream-2);margin-top:10px;}
+.today-hijri{font-size:13px;color:var(--brass);font-weight:600;margin-top:2px;}
+.today-rule{height:1px;background:rgba(241,233,216,.14);margin:22px 0;}
+.today-next-lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-3);margin-bottom:8px;}
+.today-next{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.today-next-name{font-family:'Instrument Serif',serif;font-size:30px;color:var(--cream);}
+.today-next-time{font-family:'Instrument Serif',serif;font-size:30px;color:var(--brass);}
+.today-cd{font-size:13px;color:var(--cream-2);margin-top:6px;}
+.today-cd b{color:var(--cream);font-weight:600;}
+
+/* ============================================================ PRAYER TIMETABLE */
+.prayer{background:var(--paper-2);border-bottom:1px solid var(--line);}
+.prayer-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(36px,4vw,54px);}
+.prayer-head h2{font-size:clamp(38px,5vw,68px);max-width:14ch;}
+.prayer-head .meta{text-align:right;font-size:14px;color:var(--ink-2);line-height:1.7;}
+.prayer-head .meta b{color:var(--ink);font-weight:600;}
+.tt{
+  border-top:1.5px solid var(--ink);
+  display:grid;grid-template-columns:repeat(6,1fr);
+}
+.tt-col{
+  padding:26px 18px 24px;border-right:1px solid var(--line);position:relative;
+  transition:background .2s;
+}
+.tt-col:last-child{border-right:none;}
+.tt-name{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);}
+.tt-ar{font-family:'Amiri',serif;font-size:15px;color:var(--ink-3);margin-top:2px;direction:rtl;}
+.tt-time{font-family:'Instrument Serif',serif;font-size:clamp(30px,3.4vw,46px);line-height:1;margin-top:18px;color:var(--ink);}
+.tt-col.next{background:var(--green);}
+.tt-col.next .tt-name{color:var(--brass);}
+.tt-col.next .tt-ar,.tt-col.next .tt-time{color:var(--cream);}
+.tt-col.next::before{content:"";position:absolute;left:0;right:0;top:-1.5px;height:3px;background:var(--clay);}
+.tt-flag{
+  display:none;margin-top:14px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--brass);
+}
+.tt-col.next .tt-flag{display:block;}
+.tt-foot{
+  border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;
+  gap:24px;flex-wrap:wrap;padding-top:22px;margin-top:0;
+}
+.tt-jumua{font-size:14px;color:var(--ink-2);}
+.tt-jumua b{font-family:'Instrument Serif',serif;font-size:20px;color:var(--green);font-weight:400;}
+.linkbtn{
+  display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);
+  border-bottom:1.5px solid var(--clay);padding-bottom:3px;transition:.2s;
+}
+.linkbtn:hover{color:var(--clay);}
+
+/* ============================================================ ABOUT */
+.about{background:var(--paper);}
+.about-top{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:start;margin-bottom:clamp(48px,6vw,84px);}
+.about-top h2{font-size:clamp(40px,5.5vw,80px);max-width:11ch;}
+.about-lead{font-size:clamp(17px,1.5vw,20px);color:var(--ink-2);line-height:1.75;font-weight:300;}
+.about-lead .drop{color:var(--ink);font-weight:500;}
+.facts{display:flex;gap:clamp(28px,4vw,56px);flex-wrap:wrap;margin-top:30px;}
+.fact-n{font-family:'Instrument Serif',serif;font-size:clamp(34px,3.4vw,46px);line-height:1;color:var(--green);}
+.fact-l{font-size:12.5px;color:var(--ink-2);margin-top:6px;max-width:16ch;}
+.pillars{border-top:1.5px solid var(--ink);}
+.pillar{
+  display:grid;grid-template-columns:64px 1fr 1.4fr;gap:clamp(18px,3vw,48px);align-items:start;
+  padding:clamp(26px,3vw,38px) 0;border-bottom:1px solid var(--line);
+}
+.pillar-n{font-family:'Instrument Serif',serif;font-size:26px;color:var(--clay);}
+.pillar-t{font-family:'Instrument Serif',serif;font-size:clamp(24px,2.4vw,32px);color:var(--ink);line-height:1.05;}
+.pillar-d{font-size:15px;color:var(--ink-2);line-height:1.7;}
+
+/* ============================================================ ONDERWIJS */
+.edu{background:var(--green);color:var(--cream);position:relative;overflow:hidden;}
+.edu-top{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,80px);align-items:end;margin-bottom:clamp(40px,5vw,64px);}
+.edu-top h2{font-size:clamp(40px,5.5vw,80px);color:var(--cream);max-width:10ch;}
+.edu-top p{font-size:clamp(16px,1.4vw,18px);color:var(--cream-2);line-height:1.7;font-weight:300;}
+.edu-list{position:relative;z-index:2;border-top:1px solid rgba(241,233,216,.22);}
+.edu-row{
+  display:grid;grid-template-columns:150px 1fr auto;gap:clamp(16px,3vw,44px);align-items:center;
+  padding:clamp(20px,2.4vw,30px) 0;border-bottom:1px solid rgba(241,233,216,.16);
+  transition:padding-left .25s;
+}
+.edu-row:hover{padding-left:14px;}
+.edu-age{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);}
+.edu-name{font-family:'Instrument Serif',serif;font-size:clamp(24px,2.6vw,36px);color:var(--cream);line-height:1.05;}
+.edu-name span{display:block;font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:300;color:var(--cream-2);margin-top:5px;line-height:1.55;max-width:52ch;}
+.edu-idx{font-family:'Instrument Serif',serif;font-size:18px;color:var(--cream-3);}
+
+/* ============================================================ QUOTE */
+.quote{background:var(--clay);color:var(--cream);text-align:center;position:relative;overflow:hidden;}
+.quote-inner{max-width:880px;margin:0 auto;position:relative;z-index:2;}
+.quote-ar{font-family:'Amiri',serif;direction:rtl;font-size:clamp(24px,3vw,38px);color:rgba(241,233,216,.5);margin-bottom:22px;line-height:1.6;}
+.quote-text{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(30px,4.4vw,58px);line-height:1.18;color:var(--cream);margin-bottom:24px;letter-spacing:-.01em;}
+.quote-attr{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(241,233,216,.6);}
+.quote-note{font-size:16px;color:rgba(241,233,216,.78);line-height:1.7;font-weight:300;max-width:46ch;margin:30px auto 28px;}
+
+/* ============================================================ ACTIVITEITEN */
+.acts{background:var(--paper);}
+.acts-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:end;margin-bottom:clamp(34px,4vw,52px);}
+.acts-head h2{font-size:clamp(38px,5vw,72px);max-width:11ch;}
+.acts-head p{font-size:clamp(16px,1.4vw,18px);color:var(--ink-2);line-height:1.7;font-weight:300;}
+.acts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.act{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:clamp(26px,2.6vw,36px);
+  transition:border-color .22s,transform .22s,background .22s;
+}
+.act:hover{border-color:var(--green);transform:translateY(-3px);}
+.act-when{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:16px;}
+.act-title{font-family:'Instrument Serif',serif;font-size:clamp(24px,2.4vw,32px);color:var(--ink);margin-bottom:10px;line-height:1.05;}
+.act-desc{font-size:14.5px;color:var(--ink-2);line-height:1.7;}
+.act-tag{display:inline-block;margin-top:18px;font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--ink-2);border:1px solid var(--line-2);border-radius:30px;padding:5px 14px;}
+
+/* ============================================================ DONEREN */
+.donate{background:var(--green-deep);color:var(--cream);position:relative;overflow:hidden;}
+.donate-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center;}
+.donate h2{font-size:clamp(40px,5.5vw,80px);color:var(--cream);max-width:11ch;line-height:.98;}
+.donate-sub{font-size:clamp(16px,1.4vw,18px);color:var(--cream-2);line-height:1.75;font-weight:300;margin:22px 0 0;max-width:44ch;}
+.donate-card{background:var(--green);border:1px solid rgba(241,233,216,.14);border-radius:4px;padding:clamp(28px,3vw,40px);}
+.donate-amts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+.amt{
+  flex:1;min-width:72px;background:transparent;border:1px solid rgba(241,233,216,.22);border-radius:2px;
+  color:var(--cream-2);padding:14px 8px;font-size:16px;font-weight:600;transition:.2s;
+}
+.amt:hover{border-color:var(--brass);color:var(--cream);}
+.amt.active{background:var(--brass);border-color:var(--brass);color:var(--green-deep);}
+.amt-custom{display:flex;align-items:center;flex:1 0 100%;border:1px solid rgba(241,233,216,.22);border-radius:2px;background:transparent;transition:.2s;overflow:hidden;cursor:text;}
+.amt-custom.active{border-color:var(--brass);background:rgba(156,124,51,.08);}
+.amt-custom .cur{padding:0 2px 0 14px;font-size:16px;font-weight:600;color:var(--cream-2);}
+.amt-custom input{flex:1;width:100%;background:transparent;border:none;outline:none;color:var(--cream);font-family:inherit;font-size:16px;font-weight:600;padding:14px 14px 14px 6px;-moz-appearance:textfield;}
+.amt-custom input::-webkit-outer-spin-button,.amt-custom input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+.amt-custom input::placeholder{color:var(--cream-3);font-weight:400;}
+.donate-hint{font-size:12.5px;color:var(--cream-3);line-height:1.6;margin-top:14px;display:flex;gap:9px;align-items:flex-start;}
+.donate-hint .dot{margin-top:6px;flex-shrink:0;}
+.donate-iban{
+  background:var(--green-deep);border:1px solid rgba(241,233,216,.14);border-radius:2px;
+  padding:14px 18px;margin:18px 0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.donate-iban .lbl{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-3);}
+.donate-iban .val{font-size:15px;color:var(--cream);font-weight:600;letter-spacing:.02em;}
+.copy-btn{font-size:12px;font-weight:600;color:var(--brass);border:1px solid rgba(156,124,51,.5);border-radius:2px;padding:6px 12px;transition:.2s;}
+.copy-btn:hover{background:var(--brass);color:var(--green-deep);}
+.anbi{display:inline-flex;align-items:center;gap:9px;font-size:12px;color:var(--cream-3);margin-top:6px;}
+.anbi .dot{width:6px;height:6px;border-radius:50%;background:var(--brass);}
+
+/* ============================================================ CONTACT */
+.contact{background:var(--paper-2);}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,6vw,90px);}
+.contact h2{font-size:clamp(40px,5.5vw,76px);max-width:9ch;margin-bottom:28px;}
+.contact-info{font-size:15px;color:var(--ink-2);line-height:1.9;}
+.contact-info .org{color:var(--ink);font-weight:500;}
+.contact-detail{display:flex;gap:13px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line);}
+.contact-detail:first-of-type{border-top:1px solid var(--line);margin-top:26px;}
+.contact-detail .k{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);width:74px;flex-shrink:0;padding-top:3px;}
+.contact-detail .v{font-size:15px;color:var(--ink);}
+.contact-detail .v a:hover{color:var(--clay);}
+
+/* form */
+.form{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3vw,42px);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.field{margin-bottom:18px;}
+.field label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px;}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--paper-2);border:1px solid var(--line-2);border-radius:2px;
+  padding:13px 15px;font-family:inherit;font-size:15px;color:var(--ink);transition:border-color .18s,background .18s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green);background:#fff;}
+.field textarea{resize:vertical;min-height:124px;line-height:1.6;}
+.field.err input,.field.err select,.field.err textarea{border-color:var(--clay);background:#faf0eb;}
+.field .msg{font-size:12px;color:var(--clay);margin-top:6px;display:none;}
+.field.err .msg{display:block;}
+.form-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:6px;}
+.form-foot .hint{font-size:13px;color:var(--ink-2);}
+.form-foot .hint a{color:var(--green);font-weight:600;border-bottom:1px solid var(--line-2);}
+.form-success{display:none;text-align:center;padding:clamp(30px,4vw,52px) 10px;}
+.form-success.show{display:block;}
+.form.sent .form-body{display:none;}
+.form-success .ok{width:54px;height:54px;border-radius:50%;background:var(--green);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 20px;font-family:'Instrument Serif',serif;}
+.form-success h3{font-family:'Instrument Serif',serif;font-size:30px;color:var(--ink);margin-bottom:10px;}
+.form-success p{font-size:15px;color:var(--ink-2);line-height:1.7;max-width:40ch;margin:0 auto;}
+
+/* ============================================================ FOOTER */
+footer{background:var(--green-deep);color:var(--cream-2);padding:clamp(48px,5vw,72px) clamp(22px,6vw,90px) 30px;}
+.foot-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:clamp(30px,5vw,70px);}
+.foot-brand{font-family:'Instrument Serif',serif;font-size:30px;color:var(--cream);margin-bottom:14px;}
+.foot-brand .q{color:var(--brass);}
+.foot-addr{font-size:14px;line-height:1.85;color:var(--cream-2);}
+.foot-col-t{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:18px;}
+.foot-col a{display:block;font-size:14px;color:var(--cream-2);padding:6px 0;transition:color .15s;}
+.foot-col a:hover{color:var(--cream);}
+.foot-bar{max-width:var(--maxw);margin:clamp(40px,5vw,64px) auto 0;padding-top:24px;border-top:1px solid rgba(241,233,216,.14);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--cream-3);}
+
+/* ============================================================ MODAL */
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(22,55,41,.72);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;}
+.overlay.open{display:flex;}
+.modal{background:var(--paper);border-radius:6px;max-width:780px;width:100%;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 90px rgba(22,55,41,.4);}
+.modal-head{background:var(--green);color:var(--cream);padding:26px 30px;display:flex;justify-content:space-between;align-items:center;}
+.modal-head h3{font-family:'Instrument Serif',serif;font-size:26px;color:var(--cream);}
+.modal-head .sub{font-size:12px;color:var(--cream-3);letter-spacing:.04em;margin-top:2px;}
+.modal-close{width:38px;height:38px;border-radius:2px;border:1px solid rgba(241,233,216,.25);color:var(--cream);font-size:18px;display:flex;align-items:center;justify-content:center;transition:.18s;}
+.modal-close:hover{background:rgba(241,233,216,.12);}
+.modal-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 30px;border-bottom:1px solid var(--line);}
+.modal-nav button{font-size:13px;font-weight:600;color:var(--ink);border:1px solid var(--line-2);border-radius:2px;padding:9px 16px;transition:.18s;}
+.modal-nav button:hover{border-color:var(--green);color:var(--green);}
+.modal-month{font-family:'Instrument Serif',serif;font-size:22px;color:var(--ink);}
+.modal-body{overflow-y:auto;padding:0 30px 30px;}
+.cal-tbl{width:100%;border-collapse:collapse;}
+.cal-tbl th{position:sticky;top:0;background:var(--paper);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:14px 6px 10px;text-align:center;border-bottom:1.5px solid var(--ink);}
+.cal-tbl td{font-size:13px;color:var(--ink);padding:9px 6px;text-align:center;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;}
+.cal-tbl td.d{font-weight:600;}
+.cal-tbl td.day{color:var(--ink-2);font-size:12px;}
+.cal-tbl tr:hover td{background:var(--paper-2);}
+.cal-tbl tr.today td{background:var(--green);color:var(--cream);}
+.cal-tbl tr.fri td.day{color:var(--clay);font-weight:700;}
+.cal-tbl tr.today.fri td.day{color:var(--brass);}
+
+/* ============================================================ TOAST */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--ink);color:var(--paper);border-radius:3px;padding:14px 24px;font-size:14px;font-weight:500;z-index:600;transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 14px 40px rgba(33,29,21,.35);max-width:380px;text-align:center;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ============================================================ REVEAL */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.reveal.in{opacity:1;transform:none;}
+.d1{transition-delay:.09s;}.d2{transition-delay:.18s;}.d3{transition-delay:.27s;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}*{animation:none!important;}}
+
+/* ============================================================ RESPONSIVE */
+@media(max-width:900px){
+  .hero-grid,.about-top,.edu-top,.acts-head,.donate-inner,.contact-grid,.foot-grid{grid-template-columns:1fr;}
+  .acts-grid{grid-template-columns:1fr;}
+  .today{order:-1;}
+  .foot-grid{gap:36px;}
+}
+@media(max-width:760px){
+  .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;align-items:stretch;background:var(--paper);border-bottom:1px solid var(--line);padding:12px 22px 22px;gap:2px;display:none;box-shadow:0 20px 40px rgba(33,29,21,.12);}
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:14px 8px;font-size:16px;border-bottom:1px solid var(--line);}
+  .nav-cta{margin:8px 0 0!important;text-align:center;}
+  .nav-toggle{display:block;}
+  .tt{grid-template-columns:repeat(3,1fr);}
+  .tt-col:nth-child(3){border-right:none;}
+  .tt-col:nth-child(-n+3){border-bottom:1px solid var(--line);}
+  .pillar{grid-template-columns:40px 1fr;}
+  .pillar-d{grid-column:2;}
+  .edu-row{grid-template-columns:1fr;gap:6px;}
+  .edu-idx{display:none;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <a class="brand" href="#top" aria-label="Al Qibla home">
+    <span class="brand-mark serif">Al<span class="q"> Qibla</span></span>
+    <span class="brand-tag">Zoetermeer</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#over" onclick="closeNav()">Over ons</a>
+    <a href="#gebeden" onclick="closeNav()">Gebedstijden</a>
+    <a href="#onderwijs" onclick="closeNav()">Onderwijs</a>
+    <a href="#activiteiten" onclick="closeNav()">Activiteiten</a>
+    <a href="#nieuws" onclick="closeNav()">Nieuws</a>
+    <a href="#contact" onclick="closeNav()">Contact</a>
+    <a href="#doneren" class="nav-cta" onclick="closeNav()">Doneren</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero zellige" id="top">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+        <span class="hero-bismillah-latin">In de naam van Allah, de Barmhartige, de Genadevolle</span>
+      </div>
+      <h1>Een thuis voor de <em>hele</em> gemeenschap</h1>
+      <p class="hero-sub">Marokkaanse Islamitische Culturele Vereniging Al Qibla — een warme, open plek voor gebed, onderwijs en verbinding in Zoetermeer.</p>
+      <div class="hero-actions">
+        <a href="#gebeden" class="btn btn-cream">Gebedstijden vandaag <span class="arr">→</span></a>
+        <a href="#onderwijs" class="btn btn-line-cream">Ons onderwijs</a>
+      </div>
+    </div>
+
+    <aside class="today" aria-label="Vandaag">
+      <div class="today-loc">Zoetermeer · nu</div>
+      <div class="today-clock"><span id="clk-hm">--:--</span><span class="sec" id="clk-s">00</span></div>
+      <div class="today-date" id="today-greg">—</div>
+      <div class="today-hijri" id="today-hijri">—</div>
+      <div class="today-rule"></div>
+      <div class="today-next-lbl">Volgende gebed</div>
+      <div class="today-next">
+        <span class="today-next-name" id="next-name">—</span>
+        <span class="today-next-time" id="next-time">--:--</span>
+      </div>
+      <div class="today-cd" id="next-cd">—</div>
+    </aside>
+  </div>
+</header>
+
+<!-- ============ GEBEDSTIJDEN ============ -->
+<section class="section prayer" id="gebeden">
+  <div class="wrap">
+    <div class="prayer-head reveal">
+      <div>
+        <div class="eyebrow">Gebedstijden</div>
+        <h2 class="serif" style="margin-top:16px">Uw dagelijkse gids voor het gebed</h2>
+      </div>
+      <div class="meta">
+        <div id="pr-date"><b>—</b></div>
+        <div id="pr-hijri">—</div>
+        <div style="margin-top:8px;font-size:12px;color:var(--ink-3)">Berekend voor Zoetermeer · Kerkenbos 4</div>
+      </div>
+    </div>
+
+    <div class="tt reveal d1">
+      <div class="tt-col" id="c-fajr">
+        <div class="tt-name">Fajr</div><div class="tt-ar">الفجر</div>
+        <div class="tt-time" id="t-fajr">--:--</div>
+        <div class="tt-flag">Volgende</div>
+      </div>
+      <div class="tt-col" id="c-shoeroek">
+        <div class="tt-name">Shoeroek</div><div class="tt-ar">الشروق</div>
+        <div class="tt-time" id="t-shoeroek">--:--</div>
+        <div class="tt-flag">Volgende</div>
+      </div>
+      <div class="tt-col" id="c-dhoehr">
+        <div class="tt-name">Dhoehr</div><div class="tt-ar">الظهر</div>
+        <div class="tt-time" id="t-dhoehr">--:--</div>
+        <div class="tt-flag">Volgende</div>
+      </div>
+      <div class="tt-col" id="c-asr">
+        <div class="tt-name">Asr</div><div class="tt-ar">العصر</div>
+        <div class="tt-time" id="t-asr">--:--</div>
+        <div class="tt-flag">Volgende</div>
+      </div>
+      <div class="tt-col" id="c-maghrib">
+        <div class="tt-name">Maghrib</div><div class="tt-ar">المغرب</div>
+        <div class="tt-time" id="t-maghrib">--:--</div>
+        <div class="tt-flag">Volgende</div>
+      </div>
+      <div class="tt-col" id="c-isha">
+        <div class="tt-name">Isha</div><div class="tt-ar">العشاء</div>
+        <div class="tt-time" id="t-isha">--:--</div>
+        <div class="tt-flag">Volgende</div>
+      </div>
+    </div>
+
+    <div class="tt-foot reveal d1">
+      <div class="tt-jumua">Jumu'ah (vrijdaggebed) · <b id="jumua-time">—</b></div>
+      <button class="linkbtn" onclick="openCal()">Bekijk de volledige jaarkalender <span>→</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OVER ONS ============ -->
+<section class="section about" id="over">
+  <div class="wrap">
+    <div class="about-top">
+      <div class="reveal">
+        <div class="eyebrow">Over ons</div>
+        <h2 class="serif" style="margin-top:16px">Meer dan een gebedsruimte</h2>
+      </div>
+      <div class="reveal d1">
+        <p class="about-lead"><span class="drop">Al Qibla is een inspirerende plek voor de mensen van Zoetermeer</span> — ongeacht geslacht, afkomst of leeftijd. Wij brengen mensen samen rond gebed, kennis en zorg voor elkaar.</p>
+        <div class="facts">
+          <div><div class="fact-n">2000+</div><div class="fact-l">Gemeenschapsleden</div></div>
+          <div><div class="fact-n">15+</div><div class="fact-l">Jaar actief in de wijk</div></div>
+          <div><div class="fact-n">200+</div><div class="fact-l">Studenten per jaar</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar-n serif">01</div>
+        <div class="pillar-t serif">Dagelijks gebed</div>
+        <div class="pillar-d">Vijf keer per dag open voor iedereen, in een rustige en gastvrije omgeving. Het hart van ons huis.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-n serif">02</div>
+        <div class="pillar-t serif">Gemeenschap</div>
+        <div class="pillar-d">Activiteiten, ontmoeting en onderlinge steun die mensen samenbrengen en verbinden — het hele jaar door.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-n serif">03</div>
+        <div class="pillar-t serif">Kennis voor iedereen</div>
+        <div class="pillar-d">Kennis opdoen, toegankelijk maken en met elkaar delen. Van de allerkleinsten tot volwassenen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONDERWIJS ============ -->
+<section class="section edu zellige" id="onderwijs">
+  <div class="wrap">
+    <div class="edu-top">
+      <div class="reveal">
+        <div class="eyebrow on-green">Onderwijs</div>
+        <h2 class="serif" style="margin-top:16px">Leren op elke leeftijd</h2>
+      </div>
+      <div class="reveal d1"><p>Kwalitatief onderwijs in Arabisch, Koran en islam — van de hadaana voor de allerkleinsten tot aparte klassen voor volwassenen, op eigen niveau en tempo.</p></div>
+    </div>
+
+    <div class="edu-list reveal">
+      <div class="edu-row">
+        <div class="edu-age">3 – 5 jaar</div>
+        <div class="edu-name serif">Hadaana<span>Islamitische kinderopvang in een warme, vertrouwde omgeving voor de allerkleinsten.</span></div>
+        <div class="edu-idx">01</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-age">6 – 12 jaar</div>
+        <div class="edu-name serif">Arabisch — basis<span>Lezen, schrijven en Koran-recitatie voor basisschoolleerlingen.</span></div>
+        <div class="edu-idx">02</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-age">13 – 17 jaar</div>
+        <div class="edu-name serif">Arabisch — gevorderd<span>Grammatica, conversatie en islamkunde voor tieners.</span></div>
+        <div class="edu-idx">03</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-age">Volwassenen</div>
+        <div class="edu-name serif">Arabisch — mannen &amp; vrouwen<span>Aparte klassen, op eigen niveau en tempo, in een veilige sfeer.</span></div>
+        <div class="edu-idx">04</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-age">Alle leeftijden</div>
+        <div class="edu-name serif">Koranles<span>Correcte recitatie, tajweed en memorisatie van de Koran.</span></div>
+        <div class="edu-idx">05</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-age">Alle leeftijden</div>
+        <div class="edu-name serif">Islamlessen<span>Islamitische beginselen, fiqh en zedenleer voor jong en oud.</span></div>
+        <div class="edu-idx">06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE / NIEUWE MOSLIM ============ -->
+<section class="section quote">
+  <div class="quote-inner reveal">
+    <div class="quote-ar">وَاللّٰهُ يَدْعُوْٓا اِلٰى دَارِ السَّلَامِ</div>
+    <div class="quote-text">“En Allah nodigt uit naar de woning van vrede.”</div>
+    <div class="quote-attr">Koran · Soera Younus 10:25</div>
+    <p class="quote-note">Interesse in de islam? Bij Al Qibla helpen wij je met al je vragen — in een open, respectvolle sfeer, zonder druk.</p>
+    <a href="#contact" class="btn btn-cream">Neem contact op <span class="arr">→</span></a>
+  </div>
+</section>
+
+<!-- ============ ACTIVITEITEN ============ -->
+<section class="section acts" id="activiteiten">
+  <div class="wrap">
+    <div class="acts-head">
+      <div class="reveal">
+        <div class="eyebrow">Activiteiten</div>
+        <h2 class="serif" style="margin-top:16px">Het hele jaar door</h2>
+      </div>
+      <div class="reveal d1"><p>Vaste momenten en evenementen die de hele gemeenschap samenbrengen. Iedereen is welkom.</p></div>
+    </div>
+    <div class="acts-grid reveal" id="actsGrid">
+      <div class="act">
+        <div class="act-when">Elke vrijdag</div>
+        <div class="act-title serif">Jumu'ah-gebed</div>
+        <p class="act-desc">Wekelijkse vrijdagpreek. Iedereen is welkom om te luisteren en mee te bidden.</p>
+        <span class="act-tag">Wekelijks</span>
+      </div>
+      <div class="act">
+        <div class="act-when">Zaterdag 6 juni 2026</div>
+        <div class="act-title serif">Arabisch — open dag</div>
+        <p class="act-desc">Kom kennismaken met ons onderwijsaanbod. Inschrijven voor het nieuwe seizoen is open.</p>
+        <span class="act-tag">Onderwijs</span>
+      </div>
+      <div class="act">
+        <div class="act-when">Elke donderdag</div>
+        <div class="act-title serif">Koranles voor beginners</div>
+        <p class="act-desc">Wekelijkse les voor volwassenen die willen beginnen met Koran lezen. Geen voorkennis nodig.</p>
+        <span class="act-tag">Wekelijks</span>
+      </div>
+      <div class="act">
+        <div class="act-when">Op aanvraag · 24/7</div>
+        <div class="act-title serif">Uitvaartdiensten</div>
+        <p class="act-desc">Professionele islamitische begrafeniszorg, dag en nacht bereikbaar voor de gemeenschap.</p>
+        <span class="act-tag">Dienst</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NIEUWS + VIDEO'S (live uit Supabase) ============ -->
+<style>
+.news{background:var(--paper-2);border-top:1px solid var(--line);}
+.news-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:end;margin-bottom:clamp(34px,4vw,52px);}
+.news-head h2{font-size:clamp(38px,5vw,72px);max-width:11ch;}
+.news-head p{font-size:clamp(16px,1.4vw,18px);color:var(--ink-2);line-height:1.7;font-weight:300;}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.news-card{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden;display:flex;flex-direction:column;transition:.22s;cursor:pointer;}
+.news-card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:0 14px 40px rgba(33,29,21,.1);}
+.news-card .ph{aspect-ratio:16/10;background:var(--sunken);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-family:'Instrument Serif',serif;font-size:34px;}
+.news-card .ph img{width:100%;height:100%;object-fit:cover;}
+.news-card .bd{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1;}
+.news-card .dt{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:11px;}
+.news-card h3{font-family:'Instrument Serif',serif;font-size:25px;line-height:1.08;color:var(--ink);margin-bottom:9px;}
+.news-card p{font-size:14.5px;color:var(--ink-2);line-height:1.65;}
+.news-card .more{margin-top:16px;font-size:13px;font-weight:600;color:var(--green);display:inline-flex;gap:7px;align-items:center;}
+.vids{background:var(--paper);}
+.vids-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.vid-card{background:var(--paper-2);border:1px solid var(--line);border-radius:5px;overflow:hidden;display:flex;flex-direction:column;transition:.22s;cursor:pointer;}
+.vid-card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:0 14px 40px rgba(33,29,21,.1);}
+.vid-thumb{aspect-ratio:16/9;background:var(--green-deep);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;}
+.vid-thumb .play{position:absolute;width:58px;height:58px;border-radius:50%;background:rgba(241,233,216,.92);color:var(--green-deep);display:flex;align-items:center;justify-content:center;font-size:20px;padding-left:4px;transition:.2s;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+.vid-card:hover .play{transform:scale(1.08);background:var(--cream);}
+.vid-card .bd{padding:18px 22px 22px;}
+.vid-card .dt{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin-bottom:9px;}
+.vid-card h3{font-family:'Instrument Serif',serif;font-size:23px;line-height:1.1;color:var(--ink);margin-bottom:7px;}
+.vid-card p{font-size:14px;color:var(--ink-2);line-height:1.6;}
+.feed-state{grid-column:1/-1;padding:46px 20px;text-align:center;border:1px dashed var(--line-2);border-radius:6px;color:var(--ink-2);}
+.feed-state .ic{font-size:30px;color:var(--ink-3);margin-bottom:10px;}
+.feed-state h3{font-family:'Instrument Serif',serif;font-size:24px;color:var(--ink);margin-bottom:6px;}
+.feed-skel{aspect-ratio:16/10;border-radius:5px;background:var(--sunken);position:relative;overflow:hidden;}
+.feed-skel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-100%);animation:fsh 1.3s infinite;}
+@keyframes fsh{100%{transform:translateX(100%);}}
+.lightbox{position:fixed;inset:0;z-index:550;background:rgba(22,55,41,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px;}
+.lightbox.open{display:flex;}
+.lightbox .frame{width:min(960px,100%);aspect-ratio:16/9;background:#000;border-radius:6px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.5);}
+.lightbox iframe{width:100%;height:100%;border:0;}
+.lightbox .lb-x{position:absolute;top:20px;right:24px;width:44px;height:44px;border-radius:3px;border:1px solid var(--cream-3);color:var(--cream);font-size:20px;display:flex;align-items:center;justify-content:center;}
+.lightbox .lb-x:hover{background:rgba(241,233,216,.12);}
+.article-modal .modal{max-width:720px;}
+.article-modal .art-img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+.article-modal .art-bd{padding:30px;overflow-y:auto;}
+.article-modal .art-bd .dt{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;}
+.article-modal .art-bd h2{font-family:'Instrument Serif',serif;font-size:34px;line-height:1.05;margin-bottom:16px;}
+.article-modal .art-bd .txt{font-size:16px;color:var(--ink-2);line-height:1.8;white-space:pre-wrap;}
+@media(max-width:900px){.news-grid,.vids-grid{grid-template-columns:1fr;}.news-head{grid-template-columns:1fr;}}
+</style>
+
+<section class="section news" id="nieuws">
+  <div class="wrap">
+    <div class="news-head reveal">
+      <div>
+        <div class="eyebrow">Nieuws</div>
+        <h2 class="serif" style="margin-top:16px">Laatste nieuws</h2>
+      </div>
+      <div><p>Aankondigingen, verslagen en mededelingen vanuit de gemeenschap. Blijf op de hoogte van wat er speelt bij Al Qibla.</p></div>
+    </div>
+    <div class="news-grid reveal d1" id="newsGrid">
+      <div class="feed-skel"></div><div class="feed-skel"></div><div class="feed-skel"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section vids" id="videos">
+  <div class="wrap">
+    <div class="news-head reveal">
+      <div>
+        <div class="eyebrow">Video's</div>
+        <h2 class="serif" style="margin-top:16px">Bekijk &amp; beluister</h2>
+      </div>
+      <div><p>Lezingen, khutbahs en opnames uit onze gemeenschap — om terug te kijken wanneer het u uitkomt.</p></div>
+    </div>
+    <div class="vids-grid reveal d1" id="vidsGrid">
+      <div class="feed-skel" style="aspect-ratio:16/9"></div><div class="feed-skel" style="aspect-ratio:16/9"></div><div class="feed-skel" style="aspect-ratio:16/9"></div>
+    </div>
+  </div>
+</section>
+
+<!-- video lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-x" id="lbClose" aria-label="Sluiten">✕</button>
+  <div class="frame"><iframe id="lbFrame" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+</div>
+
+<!-- artikel modal -->
+<div class="overlay article-modal" id="artModal" onclick="if(event.target===this)this.classList.remove('open'),document.body.style.overflow=''">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h3 class="serif">Nieuwsbericht</h3></div>
+      <button class="modal-close" onclick="document.getElementById('artModal').classList.remove('open');document.body.style.overflow=''" aria-label="Sluiten">✕</button>
+    </div>
+    <div class="modal-body art-bd" id="artBody"></div>
+  </div>
+</div>
+
+<!-- ============ DONEREN ============ -->
+<section class="section donate zellige" id="doneren">
+  <div class="wrap donate-inner">
+    <div class="reveal">
+      <div class="eyebrow on-green">Steun ons</div>
+      <h2 class="serif" style="margin-top:16px">Draag bij aan de gemeenschap</h2>
+      <p class="donate-sub">Uw donatie houdt onze deuren open voor gebed, onderwijs en gemeenschapsactiviteiten. Elke bijdrage telt — sadaqah jariyah.</p>
+      <div class="anbi" style="margin-top:22px"><span class="dot"></span> ANBI-erkend · giften aftrekbaar · KvK 57759901</div>
+    </div>
+
+    <div class="donate-card reveal d1">
+      <div class="donate-amts">
+        <button class="amt" onclick="setAmt(this,10)">€ 10</button>
+        <button class="amt active" onclick="setAmt(this,25)">€ 25</button>
+        <button class="amt" onclick="setAmt(this,50)">€ 50</button>
+        <button class="amt" onclick="setAmt(this,100)">€ 100</button>
+        <label class="amt-custom" id="amtCustom">
+          <span class="cur">€</span>
+          <input type="number" id="amtInput" inputmode="decimal" min="1" step="1" placeholder="Eigen bedrag" oninput="setCustom(this.value)" onfocus="focusCustom()">
+        </label>
+      </div>
+      <div class="donate-iban">
+        <div>
+          <div class="lbl">Liever overmaken? IBAN · t.n.v. Al Qibla</div>
+          <div class="val" id="iban-val">NL84 INGB 0004 4399 44</div>
+        </div>
+        <button class="copy-btn" onclick="copyIban()">Kopieer</button>
+      </div>
+      <a class="btn btn-cream" style="width:100%" href="https://betaalverzoek.rabobank.nl/betaalverzoek/?id=dk_3XUKfSxSNAf34FoZzgw" target="_blank" rel="noopener" onclick="doDonate(event)">Doneer <span id="amt-lbl">€ 25</span> via iDEAL <span class="arr">→</span></a>
+      <div class="donate-hint"><span class="dot"></span> Je opent een beveiligd Rabobank-betaalverzoek. Het gekozen bedrag wordt voor je gekopieerd — vul of plak het op de Rabobank-pagina en betaal met iDEAL.</div>
+      <div class="anbi" style="margin-top:16px"><span class="dot"></span> Liever een vaste gift of lidmaatschap? Mail <a href="mailto:info@moskeealqibla.nl" style="color:var(--brass)">info@moskeealqibla.nl</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Contact</div>
+      <h2 class="serif" style="margin-top:16px">Wij staan voor u klaar</h2>
+      <div class="contact-info">
+        <span class="org">Marokkaanse Islamitische Culturele Vereniging Al Qibla</span>
+      </div>
+      <div class="contact-detail"><div class="k">Adres</div><div class="v">Kerkenbos 4<br>2715 RP Zoetermeer</div></div>
+      <div class="contact-detail"><div class="k">E-mail</div><div class="v"><a href="mailto:info@moskeealqibla.nl">info@moskeealqibla.nl</a></div></div>
+      <div class="contact-detail"><div class="k">WhatsApp</div><div class="v">Toegang via contactformulier</div></div>
+      <div class="contact-detail"><div class="k">KvK</div><div class="v">57759901 · ANBI-erkend</div></div>
+    </div>
+
+    <div class="reveal d1">
+      <form class="form" id="contactForm" novalidate>
+        <div class="form-body">
+          <div class="form-row">
+            <div class="field" id="f-naam">
+              <label for="naam">Naam</label>
+              <input type="text" id="naam" name="naam" placeholder="Uw naam" autocomplete="name">
+              <div class="msg">Vul uw naam in.</div>
+            </div>
+            <div class="field" id="f-email">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="naam@voorbeeld.nl" autocomplete="email">
+              <div class="msg">Vul een geldig e-mailadres in.</div>
+            </div>
+          </div>
+          <div class="field" id="f-onderwerp">
+            <label for="onderwerp">Onderwerp</label>
+            <select id="onderwerp" name="onderwerp">
+              <option value="">Kies een onderwerp…</option>
+              <option>Algemene vraag</option>
+              <option>Onderwijs / inschrijven</option>
+              <option>Uitvaartdienst</option>
+              <option>Nieuwe moslim worden</option>
+              <option>Vrijwilliger worden</option>
+              <option>Lidmaatschap / doneren</option>
+            </select>
+            <div class="msg">Kies een onderwerp.</div>
+          </div>
+          <div class="field" id="f-bericht">
+            <label for="bericht">Bericht</label>
+            <textarea id="bericht" name="bericht" placeholder="Waarmee kunnen we u helpen?"></textarea>
+            <div class="msg">Schrijf een kort bericht.</div>
+          </div>
+          <div class="form-foot">
+            <span class="hint">Of mail naar <a href="mailto:info@moskeealqibla.nl">info@moskeealqibla.nl</a></span>
+            <button type="submit" class="btn btn-ink">Verstuur bericht <span class="arr">→</span></button>
+          </div>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="ok">✓</div>
+          <h3 class="serif">Bedankt voor uw bericht</h3>
+          <p>Uw bericht is verstuurd. Wij nemen zo snel mogelijk contact met u op, inchaa'Allah.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand serif">Al<span class="q"> Qibla</span></div>
+      <div class="foot-addr">Marokkaanse Islamitische Culturele Vereniging<br>Kerkenbos 4, 2715 RP Zoetermeer<br>info@moskeealqibla.nl</div>
+    </div>
+    <div class="foot-col">
+      <div class="foot-col-t">Navigatie</div>
+      <a href="#over">Over ons</a>
+      <a href="#gebeden">Gebedstijden</a>
+      <a href="#onderwijs">Onderwijs</a>
+      <a href="#activiteiten">Activiteiten</a>
+      <a href="#nieuws">Nieuws</a>
+      <a href="#videos">Video's</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="foot-col">
+      <div class="foot-col-t">Doe mee</div>
+      <a href="#doneren">Doneren</a>
+      <a href="#onderwijs">Inschrijven onderwijs</a>
+      <a href="#contact">Vrijwilliger worden</a>
+      <a href="#contact">Nieuwe moslim worden</a>
+      <a href="mailto:info@moskeealqibla.nl">Uitvaartdiensten</a>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <span>© 2026 Moskee Al Qibla Zoetermeer · ANBI-erkend · KvK 57759901 · <a href="admin/login.html" style="color:var(--cream-3);border-bottom:1px solid rgba(241,233,216,.2)">Beheer</a></span>
+    <span>بارك الله فيكم</span>
+  </div>
+</footer>
+
+<!-- ============ KALENDER MODAL ============ -->
+<div class="overlay" id="calModal" onclick="closeCalOverlay(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3 class="serif">Jaarkalender gebedstijden</h3>
+        <div class="sub">Zoetermeer · Kerkenbos 4 · 2026</div>
+      </div>
+      <button class="modal-close" onclick="closeCal()" aria-label="Sluiten">✕</button>
+    </div>
+    <div class="modal-nav">
+      <button onclick="calMonth(-1)">← Vorige</button>
+      <div class="modal-month" id="cal-lbl">—</div>
+      <button onclick="calMonth(1)">Volgende →</button>
+    </div>
+    <div class="modal-body">
+      <table class="cal-tbl">
+        <thead>
+          <tr><th>Datum</th><th>Dag</th><th>Fajr</th><th>Shoeroek</th><th>Dhoehr</th><th>Asr</th><th>Maghrib</th><th>Isha</th></tr>
+        </thead>
+        <tbody id="cal-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toastEl"></div>
+
+<script src="prayer-data.js"></script>
+<script>
+/* ===== helpers ===== */
+const PKEYS=["fajr","shoeroek","dhoehr","asr","maghrib","isha"];
+const PLABEL={fajr:"Fajr",shoeroek:"Shoeroek",dhoehr:"Dhoehr",asr:"Asr",maghrib:"Maghrib",isha:"Isha"};
+const DAYS_NL=["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"];
+const MON_NL=["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"];
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const pad=n=>String(n).padStart(2,"0");
+const dkey=d=>pad(d.getMonth()+1)+pad(d.getDate());
+function getTimes(d){const t=P[dkey(d)];return t?[...t,"23:30"]:null;}
+function getHijri(d){
+  const k=dkey(d);if(HIJRI[k])return HIJRI[k];
+  const ks=Object.keys(HIJRI).sort();let best=ks[0];
+  for(const key of ks){if(key<=k)best=key;else break;}
+  return HIJRI[best]||"";
+}
+function getJumua(d){const m=d.getMonth()+1;return(m>=4&&m<=10)?"14:00":"13:00";}
+const toMins=t=>{const[h,m]=t.split(":").map(Number);return h*60+m;};
+function fmtFull(d){return cap(DAYS_NL[d.getDay()])+" "+d.getDate()+" "+MON_NL[d.getMonth()]+" "+d.getFullYear();}
+
+/* ===== live update ===== */
+function tick(){
+  const now=new Date();
+  const times=getTimes(now);
+  // clock
+  document.getElementById("clk-hm").textContent=pad(now.getHours())+":"+pad(now.getMinutes());
+  document.getElementById("clk-s").textContent=pad(now.getSeconds());
+  if(!times)return;
+
+  const hijri=getHijri(now),jumua=getJumua(now);
+  document.getElementById("today-greg").textContent=fmtFull(now);
+  document.getElementById("today-hijri").textContent=hijri;
+  document.getElementById("pr-date").innerHTML="<b>"+fmtFull(now)+"</b>";
+  document.getElementById("pr-hijri").textContent=hijri;
+  document.getElementById("jumua-time").textContent=jumua+" uur";
+
+  // fill timetable
+  PKEYS.forEach((k,i)=>{const el=document.getElementById("t-"+k);if(el)el.textContent=times[i];});
+
+  // next prayer (today or tomorrow's fajr)
+  const nowM=now.getHours()*60+now.getMinutes()+now.getSeconds()/60;
+  const mins=times.map(toMins);
+  let nextI=mins.findIndex(m=>m>nowM);
+  let nextMins,nextKey,nextTime;
+  if(nextI===-1){
+    // tomorrow's fajr
+    const tm=new Date(now.getTime()+864e5);const tt=getTimes(tm);
+    nextKey="fajr";nextTime=tt?tt[0]:times[0];nextMins=toMins(nextTime)+1440;
+  }else{
+    nextKey=PKEYS[nextI];nextTime=times[nextI];nextMins=mins[nextI];
+  }
+  // highlight column
+  PKEYS.forEach(k=>document.getElementById("c-"+k).classList.toggle("next",nextI!==-1&&k===nextKey));
+
+  // countdown
+  const diff=Math.max(0,Math.round((nextMins-nowM)*60));
+  const h=Math.floor(diff/3600),m=Math.floor((diff%3600)/60),s=diff%60;
+  let cd=h>0?(h+"u "+pad(m)+"m"):(m+"m "+pad(s)+"s");
+  document.getElementById("next-name").textContent=PLABEL[nextKey];
+  document.getElementById("next-time").textContent=nextTime;
+  document.getElementById("next-cd").innerHTML="over <b>"+cd+"</b>"+(nextI===-1?" (morgen)":"");
+}
+tick();setInterval(tick,1000);
+
+/* ===== calendar modal ===== */
+let calM=new Date().getMonth(),calY=2026;
+function openCal(){calM=new Date().getMonth();renderCal();document.getElementById("calModal").classList.add("open");document.body.style.overflow="hidden";}
+function closeCal(){document.getElementById("calModal").classList.remove("open");document.body.style.overflow="";}
+function closeCalOverlay(e){if(e.target===document.getElementById("calModal"))closeCal();}
+function calMonth(d){calM+=d;if(calM>11)calM=0;if(calM<0)calM=11;renderCal();}
+function renderCal(){
+  document.getElementById("cal-lbl").textContent=cap(MON_NL[calM])+" "+calY;
+  const tb=document.getElementById("cal-body");tb.innerHTML="";
+  const today=new Date(),dim=new Date(calY,calM+1,0).getDate();
+  for(let d=1;d<=dim;d++){
+    const dt=new Date(calY,calM,d),t=getTimes(dt);if(!t)continue;
+    const tr=document.createElement("tr");
+    const isToday=dt.toDateString()===today.toDateString(),isFri=dt.getDay()===5;
+    tr.className=(isToday?"today ":"")+(isFri?"fri":"");
+    tr.innerHTML="<td class='d'>"+d+" "+MON_NL[calM].slice(0,3)+"</td><td class='day'>"+DAYS_NL[dt.getDay()].slice(0,2)+"</td>"+
+      t.map(x=>"<td>"+x+"</td>").join("");
+    tb.appendChild(tr);
+  }
+}
+
+/* ===== donate ===== */
+let amt=25;
+function renderAmt(){document.getElementById("amt-lbl").textContent="€ "+amt;}
+function setAmt(el,v){
+  document.querySelectorAll(".amt").forEach(b=>b.classList.remove("active"));
+  document.getElementById("amtCustom").classList.remove("active");
+  el.classList.add("active");
+  const inp=document.getElementById("amtInput"); if(inp) inp.value="";
+  amt=v; renderAmt();
+}
+function focusCustom(){
+  document.querySelectorAll(".amt").forEach(b=>b.classList.remove("active"));
+  document.getElementById("amtCustom").classList.add("active");
+}
+function setCustom(v){
+  const n=Math.max(0,Math.round(parseFloat(String(v).replace(",","."))||0));
+  if(n>0){amt=n;renderAmt();}
+}
+async function doDonate(e){
+  /* niet preventDefault: de <a> opent de Rabobank-link in een nieuw tabblad.
+     We kopiëren vooraf het bedrag zodat de donateur het kan plakken. */
+  try{ if(navigator.clipboard) await navigator.clipboard.writeText(String(amt)); }catch(_){}
+  toast("Bedrag € "+amt+" gekopieerd — vul of plak dit op de Rabobank-pagina");
+}
+function copyIban(){const v=document.getElementById("iban-val").textContent;navigator.clipboard&&navigator.clipboard.writeText(v.replace(/\s/g,""));toast("IBAN gekopieerd: "+v);}
+
+/* ===== contact form ===== */
+/* ===== contact form =====
+   Berichten worden opgeslagen in Supabase (tabel contact_messages) en zijn te
+   lezen onder Beheer → Berichten. Wil je daarnaast een e-mail in je inbox bij
+   elk nieuw bericht? Haal een gratis access-key op bij https://web3forms.com
+   (koppel 'm aan info@moskeealqibla.nl) en plak die hieronder. Laat 'm leeg om
+   alleen in Supabase op te slaan. */
+const WEB3FORMS_KEY="e80ee62d-f376-4f69-8a35-b4ac37287cbb"; // ← Web3Forms access-key (info@moskeealqibla.nl)
+const form=document.getElementById("contactForm");
+function setErr(id,bad){document.getElementById(id).classList.toggle("err",bad);}
+form.addEventListener("submit",async e=>{
+  e.preventDefault();
+  const naam=document.getElementById("naam").value.trim();
+  const email=document.getElementById("email").value.trim();
+  const onderwerp=document.getElementById("onderwerp").value;
+  const bericht=document.getElementById("bericht").value.trim();
+  const okEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  setErr("f-naam",!naam);setErr("f-email",!okEmail);setErr("f-onderwerp",!onderwerp);setErr("f-bericht",bericht.length<3);
+  if(!naam||!okEmail||!onderwerp||bericht.length<3){
+    const first=form.querySelector(".field.err");if(first)first.querySelector("input,select,textarea").focus();
+    return;
+  }
+
+  const btn=form.querySelector('button[type="submit"]');
+  const orig=btn.innerHTML; btn.disabled=true; btn.innerHTML='Versturen…';
+  const A=window.AlQibla||{};
+  let stored=false;
+
+  try{
+    // 1) Opslaan in Supabase (verschijnt in het beheer onder "Berichten")
+    if(A.configured&&A.sb){
+      const{error}=await A.sb.from("contact_messages").insert({
+        name:naam,email:email,subject:onderwerp,message:bericht
+      });
+      if(error)throw error;
+      stored=true;
+    }
+    // 2) Optioneel: e-mailnotificatie via Web3Forms
+    if(WEB3FORMS_KEY){
+      const fd={access_key:WEB3FORMS_KEY,subject:"["+onderwerp+"] bericht via website — "+naam,
+        from_name:naam,name:naam,email:email,onderwerp:onderwerp,message:bericht,
+        replyto:email};
+      const res=await fetch("https://api.web3forms.com/submit",{
+        method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+        body:JSON.stringify(fd)});
+      const j=await res.json().catch(()=>({}));
+      if(!stored&&!j.success)throw new Error(j.message||"Verzenden mislukt");
+    }
+    if(!stored&&!WEB3FORMS_KEY){
+      // Geen enkel kanaal beschikbaar (Supabase niet gekoppeld én geen key)
+      throw new Error("not-configured");
+    }
+    form.classList.add("sent");document.getElementById("formSuccess").classList.add("show");
+  }catch(err){
+    btn.disabled=false; btn.innerHTML=orig;
+    if(err&&err.message==="not-configured"){
+      alert("Het verzenden is nog niet ingesteld. Koppel de beheeromgeving aan Supabase of vul een Web3Forms-key in. Je kunt ons intussen mailen op info@moskeealqibla.nl.");
+    }else{
+      alert("Er ging iets mis bij het versturen. Probeer het later opnieuw, of mail naar info@moskeealqibla.nl.");
+    }
+  }
+});
+
+/* ===== nav (mobile) ===== */
+function toggleNav(){document.getElementById("navLinks").classList.toggle("open");}
+function closeNav(){document.getElementById("navLinks").classList.remove("open");}
+
+/* ===== toast ===== */
+let toastT;
+function toast(msg){const el=document.getElementById("toastEl");el.textContent=msg;el.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove("show"),4200);}
+
+/* ===== reveal ===== */
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+</script>
+
+<!-- ============ LIVE DATA UIT SUPABASE ============ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="supabase-config.js"></script>
+<script>
+(function(){
+  const A=window.AlQibla||{};
+  const MONL=["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"];
+  const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+  const fmt=d=>{if(!d)return"";const x=new Date(d);return isNaN(x)?"":x.getDate()+" "+MONL[x.getMonth()]+" "+x.getFullYear();};
+  const pub=p=>!p?"":(/^https?:\/\//.test(p)?p:(A.sb?A.sb.storage.from(A.BUCKET).getPublicUrl(p).data.publicUrl:""));
+
+  /* YouTube/Vimeo helpers */
+  function ytId(u){const m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{6,})/);return m?m[1]:null;}
+  function vimeoId(u){const m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);return m?m[1]:null;}
+  function embedUrl(u){const y=ytId(u);if(y)return"https://www.youtube.com/embed/"+y+"?autoplay=1&rel=0";const v=vimeoId(u);if(v)return"https://player.vimeo.com/video/"+v+"?autoplay=1";return u;}
+  function autoThumb(u){const y=ytId(u);return y?"https://img.youtube.com/vi/"+y+"/hqdefault.jpg":"";}
+
+  function feedEmpty(title,msg,icon){return `<div class="feed-state"><div class="ic">${icon}</div><h3 class="serif">${title}</h3><p>${msg}</p></div>`;}
+
+  /* ----- NIEUWS ----- */
+  async function loadNews(){
+    const grid=document.getElementById("newsGrid");
+    if(!A.configured){grid.innerHTML=feedEmpty("Nieuws verschijnt hier","Zodra de beheeromgeving aan Supabase is gekoppeld, tonen we hier automatisch het laatste nieuws.","❖");return;}
+    try{
+      const{data,error}=await A.sb.from("news_posts").select("*").eq("status","published").order("published_at",{ascending:false}).limit(6);
+      if(error)throw error;
+      if(!data||!data.length){grid.innerHTML=feedEmpty("Nog geen nieuws","Er zijn nog geen berichten gepubliceerd. Kom binnenkort terug.","❖");return;}
+      grid.innerHTML="";
+      data.forEach(r=>{
+        const img=pub(r.image_path);
+        const card=document.createElement("div");card.className="news-card";
+        card.innerHTML=`<div class="ph">${img?`<img src="${esc(img)}" alt="${esc(r.title)}" loading="lazy">`:"❖"}</div>
+          <div class="bd"><div class="dt">${fmt(r.published_at)}</div>
+          <h3 class="serif">${esc(r.title)}</h3><p>${esc(r.summary||"")}</p>
+          <span class="more">Lees meer →</span></div>`;
+        card.addEventListener("click",()=>openArticle(r,img));
+        grid.appendChild(card);
+      });
+    }catch(e){grid.innerHTML=feedEmpty("Nieuws kon niet laden","Probeer de pagina later opnieuw te laden.","⚠");}
+  }
+
+  function openArticle(r,img){
+    const b=document.getElementById("artBody");
+    b.innerHTML=`${img?`<img class="art-img" src="${esc(img)}" alt="${esc(r.title)}" style="border-radius:4px;margin-bottom:22px">`:""}
+      <div class="dt">${fmt(r.published_at)}</div><h2 class="serif">${esc(r.title)}</h2>
+      <div class="txt">${esc(r.body||r.summary||"")}</div>`;
+    document.getElementById("artModal").classList.add("open");document.body.style.overflow="hidden";
+  }
+
+  /* ----- VIDEO'S ----- */
+  async function loadVids(){
+    const grid=document.getElementById("vidsGrid");
+    if(!A.configured){grid.innerHTML=feedEmpty("Video's verschijnen hier","Zodra de beheeromgeving aan Supabase is gekoppeld, tonen we hier automatisch de gepubliceerde video's.","▷");return;}
+    try{
+      const{data,error}=await A.sb.from("videos").select("*").eq("status","published").order("published_at",{ascending:false}).limit(6);
+      if(error)throw error;
+      if(!data||!data.length){grid.innerHTML=feedEmpty("Nog geen video's","Er zijn nog geen video's gepubliceerd. Kom binnenkort terug.","▷");return;}
+      grid.innerHTML="";
+      data.forEach(r=>{
+        const thumb=pub(r.thumbnail_path)||autoThumb(r.video_url||"");
+        const card=document.createElement("div");card.className="vid-card";
+        card.innerHTML=`<div class="vid-thumb">${thumb?`<img src="${esc(thumb)}" alt="${esc(r.title)}" loading="lazy">`:""}<span class="play">▶</span></div>
+          <div class="bd"><div class="dt">${fmt(r.published_at)}</div>
+          <h3 class="serif">${esc(r.title)}</h3>${r.description?`<p>${esc(r.description)}</p>`:""}</div>`;
+        card.addEventListener("click",()=>openVid(r.video_url));
+        grid.appendChild(card);
+      });
+    }catch(e){grid.innerHTML=feedEmpty("Video's konden niet laden","Probeer de pagina later opnieuw te laden.","⚠");}
+  }
+
+  function openVid(url){
+    if(!url)return;
+    document.getElementById("lbFrame").src=embedUrl(url);
+    document.getElementById("lightbox").classList.add("open");document.body.style.overflow="hidden";
+  }
+  function closeVid(){document.getElementById("lightbox").classList.remove("open");document.getElementById("lbFrame").src="";document.body.style.overflow="";}
+  document.getElementById("lbClose").addEventListener("click",closeVid);
+  document.getElementById("lightbox").addEventListener("click",e=>{if(e.target.id==="lightbox")closeVid();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeVid();document.getElementById("artModal").classList.remove("open");document.body.style.overflow="";}});
+
+  /* ----- ACTIVITEITEN ----- */
+  async function loadActs(){
+    const grid=document.getElementById("actsGrid");
+    if(!grid||!A.configured)return; // niet gekoppeld: hardcoded fallback blijft staan
+    try{
+      const{data,error}=await A.sb.from("activities").select("*").eq("status","published").order("sort_order",{ascending:true}).order("created_at",{ascending:true});
+      if(error)throw error;
+      if(!data||!data.length)return; // geen gepubliceerde activiteiten: fallback blijft staan
+      grid.innerHTML="";
+      data.forEach(r=>{
+        const card=document.createElement("div");card.className="act";
+        card.innerHTML=`<div class="act-when">${esc(r.when_label||"")}</div>
+          <div class="act-title serif">${esc(r.title)}</div>
+          ${r.description?`<p class="act-desc">${esc(r.description)}</p>`:""}
+          ${r.tag?`<span class="act-tag">${esc(r.tag)}</span>`:""}`;
+        grid.appendChild(card);
+      });
+    }catch(e){/* fallback blijft staan */}
+  }
+
+  loadNews();loadVids();loadActs();
+})();
+</script>
+</body>
+</html>

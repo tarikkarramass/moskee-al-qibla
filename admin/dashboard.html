@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Beheer · Moskee Al Qibla</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#1d4a39">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="adm-scrim"></div>
+<div class="adm-shell">
+  <aside class="adm-side">
+    <div class="brand">
+      <span class="brand-mark serif">Al<span class="q">qibla</span></span>
+      <span class="brand-tag">Beheer</span>
+    </div>
+    <div class="panel-lbl">Menu</div>
+    <nav class="adm-nav"></nav>
+    <div class="spacer"></div>
+    <div class="acct">
+      <div class="adm-who-lbl">Ingelogd als</div>
+      <div class="adm-who">—</div>
+      <button class="adm-signout">↩ Uitloggen</button>
+      <a class="view-site" href="../index.html" target="_blank">↗ Bekijk de website</a>
+    </div>
+  </aside>
+
+  <div class="adm-main">
+    <div class="adm-topbar">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <button class="adm-burger">☰</button>
+        <div class="ttl"><span class="eyebrow">Beheer</span><h1 class="serif">Dashboard</h1></div>
+      </div>
+      <div class="actions">
+        <a class="adm-btn ghost sm" href="../index.html" target="_blank">Bekijk site ↗</a>
+      </div>
+    </div>
+    <div class="cfg-banner">Supabase is nog niet ingesteld. Vul je gegevens in <code>supabase-config.js</code> in — zie <code>SUPABASE_SETUP.md</code>.</div>
+
+    <div class="adm-content">
+      <div class="dash-greet">
+        <h2 class="serif" id="greet">Welkom terug</h2>
+        <p>Beheer het nieuws, de video's en media van de website. Alleen gepubliceerde items zijn zichtbaar voor bezoekers.</p>
+      </div>
+
+      <div class="stat-row" id="stats">
+        <div class="stat"><div class="n" id="st-news">—</div><div class="l">Nieuwsberichten</div></div>
+        <div class="stat"><div class="n" id="st-vid">—</div><div class="l">Video's</div></div>
+        <div class="stat"><div class="n" id="st-act">—</div><div class="l">Activiteiten</div></div>
+        <div class="stat"><div class="n" id="st-msg">—</div><div class="l">Ongelezen berichten</div></div>
+        <div class="stat"><div class="n" id="st-draft">—</div><div class="l">Concepten</div></div>
+      </div>
+
+      <div class="tiles">
+        <a class="tile" href="news.html">
+          <div class="ic">❖</div>
+          <h3 class="serif">Nieuws beheren</h3>
+          <p>Berichten toevoegen, bewerken, publiceren of verwijderen.</p>
+          <span class="count" id="c-news">—</span>
+          <span class="go">Openen →</span>
+        </a>
+        <a class="tile" href="videos.html">
+          <div class="ic">▷</div>
+          <h3 class="serif">Video's beheren</h3>
+          <p>YouTube/Vimeo-video's met thumbnail toevoegen en beheren.</p>
+          <span class="count" id="c-vid">—</span>
+          <span class="go">Openen →</span>
+        </a>
+        <a class="tile" href="activities.html">
+          <div class="ic">✦</div>
+          <h3 class="serif">Activiteiten beheren</h3>
+          <p>Vaste momenten en evenementen op de website toevoegen en ordenen.</p>
+          <span class="count" id="c-act">—</span>
+          <span class="go">Openen →</span>
+        </a>
+        <a class="tile" href="messages.html">
+          <div class="ic">✉</div>
+          <h3 class="serif">Berichten</h3>
+          <p>Contactberichten van bezoekers lezen, beantwoorden en opruimen.</p>
+          <span class="count" id="c-msg">—</span>
+          <span class="go">Openen →</span>
+        </a>
+        <a class="tile" href="media.html">
+          <div class="ic">❏</div>
+          <h3 class="serif">Media &amp; uploads</h3>
+          <p>Geüploade afbeeldingen en thumbnails bekijken en opruimen.</p>
+          <span class="count" id="c-media">—</span>
+          <span class="go">Openen →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../supabase-config.js"></script>
+<script src="admin-core.js"></script>
+<script>
+(async function () {
+  const user = await Admin.requireAuth();
+  Admin.mountShell("dashboard.html", user ? user.email : "");
+  if (!user) return; // niet geconfigureerd of niet ingelogd
+
+  const hr = new Date().getHours();
+  document.getElementById("greet").textContent =
+    (hr < 12 ? "Goedemorgen" : hr < 18 ? "Goedemiddag" : "Goedenavond") + ", beheerder";
+
+  try {
+    const [news, vids, acts, msgs] = await Promise.all([
+      Admin.sb.from("news_posts").select("id,status", { count: "exact" }),
+      Admin.sb.from("videos").select("id,status", { count: "exact" }),
+      Admin.sb.from("activities").select("id,status", { count: "exact" }),
+      Admin.sb.from("contact_messages").select("id,is_read", { count: "exact" }),
+    ]);
+    const nArr = news.data || [], vArr = vids.data || [], aArr = acts.data || [], mArr = msgs.data || [];
+    const drafts = [...nArr, ...vArr, ...aArr].filter(x => x.status === "draft").length;
+    const unread = mArr.filter(x => !x.is_read).length;
+    document.getElementById("st-news").textContent = nArr.length;
+    document.getElementById("st-vid").textContent = vArr.length;
+    document.getElementById("st-act").textContent = aArr.length;
+    document.getElementById("st-msg").textContent = unread;
+    document.getElementById("st-draft").textContent = drafts;
+    document.getElementById("c-news").textContent =
+      nArr.filter(x => x.status === "published").length + " gepubliceerd";
+    document.getElementById("c-vid").textContent =
+      vArr.filter(x => x.status === "published").length + " gepubliceerd";
+    document.getElementById("c-act").textContent =
+      aArr.filter(x => x.status === "published").length + " gepubliceerd";
+    document.getElementById("c-msg").textContent =
+      unread ? unread + " ongelezen" : mArr.length + " totaal";
+    document.getElementById("c-media").textContent = "Bestanden beheren";
+  } catch (e) {
+    ["st-news","st-vid","st-act","st-msg","st-draft"].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = "—"; });
+    Admin.toast("Kon gegevens niet laden. Zijn de tabellen aangemaakt?", "err");
+  }
+})();
+</script>
+</body>
+</html>
